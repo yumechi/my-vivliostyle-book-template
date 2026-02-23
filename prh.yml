@@ -1,0 +1,10 @@
+version: 1
+rules:
+  - expected: TeckUp
+    patterns:
+      - /TeckUp/
+      - /TechUp/
+  - expected: Raspberry Pi
+    patterns:
+      - /Raspberry Pi/
+      - /Ras?p?berry [P|p]i/
