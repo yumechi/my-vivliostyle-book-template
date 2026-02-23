@@ -1,3 +1,3 @@
 # My Book
 
-著者: yumechi。
+著者: yumechi
