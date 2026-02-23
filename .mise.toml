@@ -1,0 +1,25 @@
+[tools]
+node = "24"
+pnpm = "10"
+
+[env]
+_.path = ["./node_modules/.bin"]
+
+[tasks.install]
+run = "pnpm install"
+description = "依存パッケージのインストール"
+
+[tasks.build]
+run = "pnpm run build"
+description = "PDF のビルド"
+depends = ["install"]
+
+[tasks.preview]
+run = "pnpm run preview"
+description = "プレビューの起動"
+depends = ["install"]
+
+[tasks.lint]
+run = "pnpm run lint"
+description = "textlint の実行"
+depends = ["install"]

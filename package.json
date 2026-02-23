@@ -1,0 +1,18 @@
+{
+  "name": "my-vivliostyle-book",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Vivliostyle で作成する書籍テンプレート",
+  "license": "MIT",
+  "author": "yumechi",
+  "scripts": {
+    "build": "vivliostyle build",
+    "preview": "vivliostyle preview",
+    "lint": "textlint manuscripts/ || true"
+  },
+  "devDependencies": {
+    "@vivliostyle/cli": "^10.3.1",
+    "@vivliostyle/theme-techbook": "latest",
+    "textlint": "latest"
+  }
+}

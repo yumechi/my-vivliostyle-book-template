@@ -1,0 +1,50 @@
+name: Build PDF
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'pnpm'
+
+      - name: Install Chromium dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            chromium-browser \
+            fonts-noto-cjk \
+            fonts-noto-cjk-extra
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run textlint
+        run: pnpm run lint
+
+      - name: Build PDF
+        run: pnpm run build
+        env:
+          PUPPETEER_EXECUTABLE_PATH: /usr/bin/chromium-browser
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: book-pdf
+          path: output/book.pdf

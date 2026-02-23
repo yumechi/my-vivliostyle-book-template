@@ -40,3 +40,19 @@ yarn-error.log*
 *.tmp
 *.temp
 *.bak
+
+# Node.js
+node_modules/
+
+# Build output
+output/
+*.pdf
+
+# pnpm
+.pnpm-store/
+
+# Vivliostyle
+.vivliostyle/
+
+# mise
+.mise.local.toml
