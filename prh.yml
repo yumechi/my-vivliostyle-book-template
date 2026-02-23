@@ -1,9 +1,5 @@
 version: 1
 rules:
-  - expected: TeckUp
-    patterns:
-      - /TeckUp/
-      - /TechUp/
   - expected: Raspberry Pi
     patterns:
       - /Raspberry Pi/
