@@ -12,7 +12,8 @@ Vivliostyle CLI を利用した書籍執筆のためのテンプレートリポ�
 - pnpm 10 (mise で管理)
 - @vivliostyle/cli ^10.3.1
 - @vivliostyle/theme-techbook
-- textlint (ルールは後日追加)
+- textlint (preset-japanese, preset-ja-spacing, preset-ja-technical-writing, preset-ai-writing, spellcheck-tech-word, prh)
+- prh (表記ゆれチェック)
 - Podman (PDF ビルド用コンテナ)
 - Make (タスクランナー)
 
@@ -25,11 +26,15 @@ Vivliostyle CLI を利用した書籍執筆のためのテンプレートリポ�
 ├── pnpm-lock.yaml          # pnpm ロックファイル (pnpm install 後に生成)
 ├── vivliostyle.config.js   # Vivliostyle 設定 (章構成、出力設定)
 ├── .textlintrc.json        # textlint 設定
+├── .textlintignore         # textlint 除外設定
+├── prh.yml                 # 表記ゆれルール
 ├── Containerfile           # Podman 用コンテナ定義
 ├── Makefile                # ビルド/開発用コマンド
 ├── manuscripts/            # 原稿ディレクトリ
 │   ├── index.md            # 表紙
-│   └── chapter-01.md       # 第1章
+│   ├── chapter-01.md       # 第1章
+│   ├── afterword.md        # あとがき
+│   └── colophon.md         # 奥付
 ├── output/                 # ビルド成果物 (gitignore)
 ├── .github/workflows/      # GitHub Actions
 │   ├── build.yml           # CI: PDF ビルドと textlint

@@ -54,8 +54,27 @@ entry: [
   { path: 'manuscripts/chapter-01.md', title: '第1章 はじめに' },
   // 新しい章を追加する場合はここに追記
   { path: 'manuscripts/chapter-02.md', title: '第2章 ...' },
+  { path: 'manuscripts/afterword.md', title: 'あとがき' },
+  { path: 'manuscripts/colophon.md', title: '奥付' },
 ],
 ```
+
+## textlint
+
+`make lint` で原稿の文章をチェックできます。以下のルールが設定されています。
+
+| ルール | 説明 |
+|---|---|
+| `preset-japanese` | 日本語の基本的なルール (読点の数など) |
+| `preset-ja-spacing` | 半角・全角間のスペースルール |
+| `preset-ja-technical-writing` | 技術文書向けルール |
+| `preset-ai-writing` | AI 生成文章の検出 |
+| `spellcheck-tech-word` | 技術用語のスペルチェック |
+| `prh` | `prh.yml` によるカスタム表記ゆれチェック |
+
+表紙 (`manuscripts/index.md`) と奥付 (`manuscripts/colophon.md`) は `.textlintignore` で除外されています。
+
+カスタムの表記ゆれルールは `prh.yml` に追加してください。
 
 ## 参照しているツール/フレームワークのライセンス
 
