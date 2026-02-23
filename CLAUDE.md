@@ -37,8 +37,8 @@ Vivliostyle CLI を利用した書籍執筆のためのテンプレートリポ�
 │   └── colophon.md         # 奥付
 ├── output/                 # ビルド成果物 (gitignore)
 ├── .github/workflows/      # GitHub Actions
-│   ├── build.yml           # CI: PDF ビルドと textlint
-│   └── release.yml         # タグ push 時に PDF を Release にアップロード
+│   ├── build.yml           # CI: push/PR 時に textlint + PDF ビルド、artifact を1日保持
+│   └── release.yml         # CD: v* タグ push 時に PDF をビルドし GitHub Release に添付
 ├── CLAUDE.md               # AI アシスタント向け指示
 ├── AGENTS.md               # AI エージェント向け参照
 ├── README.md               # プロジェクト説明
