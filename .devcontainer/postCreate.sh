@@ -20,5 +20,5 @@ mise install
 # pnpm のパスを現在のセッションに追加
 export PATH="$(mise which pnpm | xargs dirname):$PATH"
 
-# 依存パッケージのインストール
-pnpm install
+# 依存パッケージのインストール (非対話環境のため CI=true を設定)
+CI=true pnpm install

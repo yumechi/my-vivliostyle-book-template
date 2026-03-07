@@ -3,9 +3,9 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "remoteEnv": {
-    "PUPPETEER_EXECUTABLE_PATH": "/usr/bin/chromium"
-  },
+  "updateRemoteUserUID": false,
+  "remoteUser": "root",
+  "remoteEnv": {},
   "postCreateCommand": "bash .devcontainer/postCreate.sh",
   "forwardPorts": [13000],
   "portsAttributes": {
