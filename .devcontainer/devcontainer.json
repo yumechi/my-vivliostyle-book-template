@@ -1,0 +1,35 @@
+{
+  "name": "Vivliostyle Book",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "updateRemoteUserUID": false,
+  "remoteUser": "root",
+  "remoteEnv": {},
+  "postCreateCommand": "bash .devcontainer/postCreate.sh",
+  "forwardPorts": [13000],
+  "portsAttributes": {
+    "13000": {
+      "label": "Vivliostyle Preview",
+      "onAutoForward": "notify"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "DavidAnson.vscode-markdownlint",
+        "yzhang.markdown-all-in-one",
+        "esbenp.prettier-vscode",
+        "redhat.vscode-yaml"
+      ],
+      "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "[markdown]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.wordWrap": "on"
+        }
+      }
+    }
+  }
+}
