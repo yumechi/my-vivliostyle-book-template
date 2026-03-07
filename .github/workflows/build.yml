@@ -3,8 +3,24 @@ name: Build PDF
 on:
   push:
     branches: [main]
+    paths:
+      - 'manuscripts/**'
+      - '.github/workflows/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'vivliostyle.config.js'
+      - '.textlintrc.json'
+      - 'prh.yml'
   pull_request:
     branches: [main]
+    paths:
+      - 'manuscripts/**'
+      - '.github/workflows/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'vivliostyle.config.js'
+      - '.textlintrc.json'
+      - 'prh.yml'
 
 jobs:
   build:
