@@ -37,7 +37,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build PDF
-        run: pnpm run build
+        run: pnpm run build:ci
         env:
           PUPPETEER_EXECUTABLE_PATH: /usr/bin/chromium-browser
 
