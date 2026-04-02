@@ -7,6 +7,7 @@
   "author": "yumechi",
   "scripts": {
     "build": "vivliostyle build",
+    "build:ci": "vivliostyle build --log-level silent",
     "preview": "vivliostyle preview",
     "lint": "textlint manuscripts/"
   },
