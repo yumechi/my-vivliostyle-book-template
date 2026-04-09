@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@vivliostyle/cli": "^10.3.1",
-    "@vivliostyle/theme-techbook": "latest",
+    "@vivliostyle/theme-techbook": "2.0.1",
     "textlint": "^15.5.1",
     "textlint-rule-max-ten": "^5.0.0",
     "textlint-rule-no-mix-dearu-desumasu": "^6.0.4",

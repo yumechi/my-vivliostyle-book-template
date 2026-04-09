@@ -1,0 +1,46 @@
+/* themes/custom.css - 書籍向けカスタムスタイル */
+
+/* 脚注 (endnotes) セクション */
+.footnotes {
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 1px solid #ccc;
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+.footnotes ol {
+  padding-left: 1.5em;
+}
+
+.footnotes li {
+  margin-bottom: 0.5em;
+}
+
+.footnotes li p {
+  margin: 0;
+}
+
+/* 本文中の参照番号 */
+.footnote-ref a {
+  text-decoration: none;
+  font-size: 0.85em;
+  vertical-align: super;
+}
+
+/* 本文に戻るリンク */
+.footnote-backref {
+  text-decoration: none;
+  margin-left: 0.3em;
+}
+
+/* 目次から表紙エントリを非表示 */
+nav[role='doc-toc'] li:has(> a[href*='index']) {
+  display: none;
+}
+
+/* まえがき・あとがきの節（h2）を目次に表示しない */
+nav[role='doc-toc'] li:has(> a[href*='forward']) > ol,
+nav[role='doc-toc'] li:has(> a[href*='afterword']) > ol {
+  display: none;
+}
