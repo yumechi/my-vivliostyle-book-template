@@ -3,9 +3,12 @@ module.exports = {
   author: 'yumechi',
   language: 'ja',
   size: 'A5',
-  theme: '@vivliostyle/theme-techbook',
+  theme: ['@vivliostyle/theme-techbook', 'themes/custom.css'],
+  toc: { title: '目次', sectionDepth: 2 },
   entry: [
     { path: 'manuscripts/index.md', title: '表紙' },
+    { path: 'manuscripts/forward.md', title: 'まえがき' },
+    { rel: 'contents', title: '目次' },
     { path: 'manuscripts/chapter-01.md', title: '第1章 はじめに' },
     { path: 'manuscripts/afterword.md', title: 'あとがき' },
     { path: 'manuscripts/colophon.md', title: '奥付' },
