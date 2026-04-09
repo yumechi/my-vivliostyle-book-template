@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Chromium のパスを環境変数に設定
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+# Puppeteer のバンドル Chromium ダウンロードを抑止（システム Chromium を使用）
+ENV PUPPETEER_SKIP_DOWNLOAD=true
 
 # pnpm をインストール
 RUN corepack enable && corepack prepare pnpm@latest --activate
