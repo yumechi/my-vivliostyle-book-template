@@ -51,7 +51,25 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Run textlint
-        run: pnpm run lint
+        id: textlint
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          pnpm run lint 2>&1 | tee /tmp/textlint-output.txt
+
+      - name: Comment lint results on PR
+        if: github.event_name == 'pull_request' && steps.textlint.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo "## textlint の指摘"
+            echo ""
+            echo '```'
+            cat /tmp/textlint-output.txt
+            echo '```'
+          } > /tmp/comment.md
+          gh pr comment ${{ github.event.pull_request.number }} --body-file /tmp/comment.md
 
       - name: Build PDF
         run: pnpm run build:ci
