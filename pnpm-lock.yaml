@@ -24,7 +24,7 @@ importers:
         specifier: ^10.3.1
         version: 10.3.1(vite@7.3.1(@types/node@25.3.0))
       '@vivliostyle/theme-techbook':
-        specifier: latest
+        specifier: 2.0.1
         version: 2.0.1(@vivliostyle/cli@10.3.1(vite@7.3.1(@types/node@25.3.0)))
       textlint:
         specifier: ^15.5.1
