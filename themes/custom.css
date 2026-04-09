@@ -33,3 +33,14 @@
   text-decoration: none;
   margin-left: 0.3em;
 }
+
+/* 目次から表紙エントリを非表示 */
+nav[role='doc-toc'] li:has(> a[href*='index']) {
+  display: none;
+}
+
+/* まえがき・あとがきの節（h2）を目次に表示しない */
+nav[role='doc-toc'] li:has(> a[href*='forward']) > ol,
+nav[role='doc-toc'] li:has(> a[href*='afterword']) > ol {
+  display: none;
+}
