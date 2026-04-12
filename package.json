@@ -10,7 +10,8 @@
     "build": "vivliostyle build",
     "build:ci": "vivliostyle build --log-level silent",
     "preview": "vivliostyle preview",
-    "lint": "textlint manuscripts/"
+    "lint": "textlint manuscripts/",
+    "diagrams": "node scripts/generate-diagrams.js"
   },
   "devDependencies": {
     "@mermaid-js/mermaid-cli": "^11.12.0",

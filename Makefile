@@ -1,4 +1,4 @@
-.PHONY: install build preview lint container-build container-pdf clean help
+.PHONY: install build preview lint diagrams container-build container-pdf clean help
 
 # デフォルトターゲット
 help:
@@ -7,6 +7,7 @@ help:
 	@echo "  make build           - PDF のビルド (ローカル)"
 	@echo "  make preview         - プレビューの起動"
 	@echo "  make lint            - textlint の実行"
+	@echo "  make diagrams        - Mermaid 図の生成"
 	@echo "  make container-build - コンテナイメージのビルド"
 	@echo "  make container-pdf   - コンテナ内で PDF をビルド"
 	@echo "  make clean           - ビルド成果物の削除"
@@ -23,6 +24,9 @@ preview: install
 
 lint: install
 	pnpm run lint
+
+diagrams: install
+	pnpm run diagrams
 
 # コンテナ (Podman)
 CONTAINER_IMAGE := vivliostyle-book-builder
