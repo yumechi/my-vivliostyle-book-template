@@ -87,8 +87,50 @@ jobs:
           PUPPETEER_EXECUTABLE_PATH: /usr/bin/chromium-browser
 
       - name: Upload PDF artifact
-        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        id: upload
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: book-pdf
+          # archive: false により zip 化せずに PDF をそのままアップロードする。
+          # ブラウザから PDF を直接開けるようになる代わりに、
+          # 単一ファイルしかアップロードできず、name は無視されて
+          # ファイル名 (book.pdf) がそのままアーティファクト名になる。
           path: output/book.pdf
+          archive: false
           retention-days: 1
+
+      - name: Comment PDF link on PR
+        if: github.event_name == 'pull_request'
+        # fork からの PR ではトークンに書き込み権限がなくコメントできないが、
+        # PDF のビルド自体は成功しているのでジョブは失敗させない
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          ARTIFACT_URL: ${{ steps.upload.outputs.artifact-url }}
+        run: |
+          set -euo pipefail
+
+          marker='<!-- build-pdf-artifact-link -->'
+          {
+            echo "$marker"
+            echo "## ビルド済み PDF"
+            echo ""
+            echo "[book.pdf を開く]($ARTIFACT_URL) (${HEAD_SHA:0:7} 時点)"
+            echo ""
+            echo "GitHub にログインした状態であれば、ダウンロードせずブラウザ上でそのまま閲覧できます。"
+            echo "保存期間は 1 日です。"
+          } > /tmp/pdf-comment.md
+
+          # push のたびにコメントが増えないよう、既存のコメントがあれば書き換える
+          ids=$(gh api "repos/$REPO/issues/$PR_NUMBER/comments" --paginate \
+            --jq ".[] | select(.body | startswith(\"$marker\")) | .id")
+          comment_id=$(printf '%s\n' "$ids" | head -n 1)
+
+          if [ -n "$comment_id" ]; then
+            gh api -X PATCH "repos/$REPO/issues/comments/$comment_id" \
+              -F body=@/tmp/pdf-comment.md
+          else
+            gh pr comment "$PR_NUMBER" --body-file /tmp/pdf-comment.md
+          fi
